@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IG Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><h1>MirazeX</h1></div>
+            <ul class="nav-links">
+                <li><a href="../home/index.html">Home</a></li>
+                <li><a href="../Frontpage2/index.html">FixMyCity</a></li>
+                <li><a href="../product/index.html">Products</a></li>
+                <li><a href="../service/index.html">Services</a></li>
+                <li><a href="../contact us/index.html" class="contact-btn">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        </nav>
+    </header>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h1>Our Services</h1>
+        <div class="services-container">
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const services = [
+                        { title: "Powerline Monitoring", desc: "Reduce costs & automate powerline inspections using drones.", icon: "⚡" },
+                        { title: "Fixing City Problems", desc: "Detect cracks & corrosion in cities with aerial views.", icon: "🌉" },
+                        { title: "Solar Plant Inspection", desc: "Identify faulty solar panels & maximize efficiency.", icon: "🔆" },
+                        { title: "Pipeline Inspection", desc: "Assess pipeline conditions & detect vegetation overgrowth.", icon: "🛢️" },
+                        { title: "Disaster Management", desc: "Use drones for rapid disaster assessment & damage evaluation.", icon: "🌪️" },
+                        { title: "Agricultural Survey", desc: "Monitor crop health & plan irrigation efficiently.", icon: "🌾" },
+                        { title: "Railway Services", desc: "Inspect bridges, rooftops, & inaccessible railway areas.", icon: "🚆" },
+                        { title: "River Mapping & Services", desc: "Monitor rivers, collect data & analyze changes.", icon: "🌊" }
+                    ];
+
+                    const container = document.querySelector(".services-container");
+                    services.forEach((service, index) => {
+                        const card = document.createElement("div");
+                        card.classList.add("service-card");
+                        if (index === 1,3,5) card.classList.add("highlighted");   
+                        card.innerHTML = `
+                            <div class="icon">${service.icon}</div>
+                            <h3>${service.title}</h3>
+                            <p>${service.desc}</p>
+                           <a href="contact.html" class="view-more">Contact Us</a>
+                        `;
+                        container.appendChild(card);
+                    });
+                });
+
+                
+        function toggleMenu() {
+            const navLinks = document.querySelector(".nav-links");
+            navLinks.classList.toggle("active");
+        }
+        
+            </script>
+        </div>
+    </section>
+
+</body>
+</html>

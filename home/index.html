@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirazeX</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><h1>MirazeX</h1></div>
+        <ul class="nav-links">
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="../Frontpage2/index.html">FixMyCity</a></li>
+            <li><a href="../product/index.html">Products</a></li>
+            <li><a href="../service/index.html">Services</a></li>
+            <li><a href="../contact us/index.html" class="contact-btn">Contact Us</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </nav>
+
+    <header class="hero">
+        <div class="slideshow">
+            <div class="slide active" style="background-image: url('slide1.jpg');"></div>
+            <div class="slide" style="background-image: url('slide2.jpg');"></div>
+            <div class="slide" style="background-image: url('slide3.jpg');"></div>
+            <div class="slide" style="background-image: url('slide4.jpg');"></div>
+        </div>
+        <div class="overlay">
+            <h1>Expertize & Developent | Mapping | Delivering</h1>
+            <button class="learn-more"><a href="../contact us/index.html">Learn More</a></button>
+        </div>
+    </header>
+
+    <section id="products" class="product-section">
+        <h1>Industry-Leading Products</h1>
+        <div class="product-container">
+            <div class="product-card">
+                <img src="image1.jpg" alt="IG Drone JAGA">
+                <div class="card-overlay">
+                    <h3>Medical Automation</h3>
+                    <p>Precision Inspection | Survey | Work</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="image2.jpg" alt="IG Drone KISSAN">
+                <div class="card-overlay">
+                    <h3>Remote Sensing Veichle</h3>
+                    <p>Detection | Automation</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="image3.jpg" alt="IG Drone SKYHAWK">
+                <div class="card-overlay">
+                    <h3>Drone Monitoring </h3>
+                    <p>Delivery | Mapping | Security & Surveillance</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="image4.png" alt="IG Drone DELTA 400">
+                <div class="card-overlay">
+                    <h3>Automated Bots</h3>
+                    <p>Mapping | Inspection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- 
+    <section id="why-choose-us" class="industry-section">
+        <h2>Why Industry Chooses Us</h2>
+        <div class="industry-container">
+            <div class="industry-card">
+                <img src="industry1.jpg" alt="Power Line Monitoring">
+                <div class="card-overlay">
+                    <h3>Power Line Monitoring</h3>
+                    <p>Ensure safety and reliability of electrical grids with our advanced drone solutions.</p>
+                </div>
+            </div>
+            <div class="industry-card">
+                <img src="industry2.jpg" alt="Smart City Surveillance">
+                <div class="card-overlay">
+                    <h3>Smart City Surveillance</h3>
+                    <p>Enhance city-wide security and monitoring with high-tech drone surveillance.</p>
+                </div>
+            </div>
+            <div class="industry-card">
+                <img src="industry3.jpg" alt="Highway Inspection">
+                <div class="card-overlay">
+                    <h3>Highway Inspection</h3>
+                    <p>Monitor road conditions and traffic patterns effectively.</p>
+                </div>
+            </div>
+            <div class="industry-card">
+                <img src="industry4.jpg" alt="Pipeline Survey">
+                <div class="card-overlay">
+                    <h3>Pipeline Survey</h3>
+                    <p>Reduce risks and improve efficiency in pipeline monitoring.</p>
+                </div>
+            </div>
+            <div class="industry-card">
+                <img src="industry5.jpg" alt="Industrial Inspection">
+                <div class="card-overlay">
+                    <h3>Industrial Inspection</h3>
+                    <p>Fast response time and reduced downtime for industries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="gallery-section">
+        <h2>Check Out the Latest Gallery</h2>
+        <div class="gallery-wrapper">
+            <div class="gallery-slider">
+                <div class="gallery-slide"><img src="gallery1.png" alt="Gallery Image 1"></div>
+                <div class="gallery-slide"><img src="gallery2.png" alt="Gallery Image 2"></div>
+                <div class="gallery-slide"><img src="gallery3.jpg" alt="Gallery Image 3"></div>
+                <div class="gallery-slide"><img src="gallery4.png" alt="Gallery Image 4"></div>
+                <div class="gallery-slide"><img src="gallery5.jpg" alt="Gallery Image 5"></div>
+                <div class="gallery-slide"><img src="gallery6.jpg" alt="Gallery Image 6"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="noteworthy-section">
+        <h2>Noteworthy Mentions</h2>
+        <div class="noteworthy-slider">
+            <div class="noteworthy-slide"><img src="news1.jpg" alt="News Mention 1"></div>
+            <div class="noteworthy-slide"><img src="news2.jpg" alt="News Mention 2"></div>
+            <div class="noteworthy-slide"><img src="news3.jpg" alt="News Mention 3"></div>
+            <div class="noteworthy-slide"><img src="news4.jpg" alt="News Mention 4"></div>
+        </div>
+    </section>
+     -->
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector(".nav-links");
+            navLinks.classList.toggle("active");
+        }
+        
+        let slideIndex = 0;
+        document.addEventListener("DOMContentLoaded", function () {
+            let slides = document.querySelectorAll(".slide");
+            let currentSlide = 0;
+        
+            function showSlides() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove("active");
+                });
+        
+                slides[currentSlide].classList.add("active");
+                currentSlide = (currentSlide + 1) % slides.length;
+        
+                setTimeout(showSlides, 5000); // 5-second delay
+            }
+        
+            showSlides();
+        });
+        
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const slider = document.querySelector(".gallery-slider");
+            let slides = document.querySelectorAll(".gallery-slide");
+            let index = 0;
+
+            function showNextSlide() {
+                slider.style.transition = "transform 1s ease-in-out";
+                index++;
+                if (index >= slides.length) {
+                    index = 0;
+                }
+                slider.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            setInterval(showNextSlide, 3000);
+        });
+
+       
+        document.querySelectorAll(".product-card").forEach(card => {
+            card.addEventListener("mouseenter", () => {
+                card.querySelector(".card-overlay").style.bottom = "0";
+                card.querySelector(".card-overlay").style.opacity = "1";
+            });
+            card.addEventListener("mouseleave", () => {
+                card.querySelector(".card-overlay").style.bottom = "-100%";
+                card.querySelector(".card-overlay").style.opacity = "0";
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const slider = document.querySelector(".gallery-slider");
+            let slides = document.querySelectorAll(".gallery-slide");
+            let index = 0;
+
+            function showNextSlide() {
+                slider.style.transition = "transform 1s ease-in-out";
+                index++;
+                if (index >= slides.length) {
+                    index = 0;
+                }
+                slider.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            setInterval(showNextSlide, 3000);
+        });
+
+
+
+
+
+    </script>
+</body>
+</html>

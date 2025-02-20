@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirazeX</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <div class="logo"><h1>MirazeX</h1></div>
+            <ul class="nav-links">
+                <li><a href="../home/index.html">Home</a></li>
+                <li><a href="../Frontpage2/index.html">FixMyCity</a></li>
+                <li><a href="../product/index.html">Products</a></li>
+                <li><a href="../service/index.html">Services</a></li>
+                <li><a href="../contact us/index.html" class="contact-btn">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        </nav>
+    </header>
+
+    <!-- Product Showcase Section -->
+    <section class="product-showcase" id="product-list">
+        <!-- Products will be dynamically inserted here using JavaScript -->
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const products = [
+                { name: "Cypher", image: "image1.jpg", weight: "6 Kg", range: "6 Km BVLOS", speed: "16 m/s", features: ["Security Surveillance", "Environmental Monitoring", "Search and Rescue", "Infrastructure Inspection"] },
+                { name: "Driksha", image: "image2.jpg", weight: "7 Kg", range: "15 Km BVLOS", speed: "40-50 Min", features: ["Redundant GPS", "IMU", "Barometer", "RTH on Low Battery"] },
+                { name: "FALCON", image: "image3.jpg", weight: "5 Kg", range: "10 Km BVLOS", speed: "14 m/s", features: ["AI Tracking", "Thermal Imaging", "Long-range Communication"] },
+                { name: "HARRIER", image: "image4.png", weight: "8 Kg", range: "20 Km BVLOS", speed: "18 m/s", features: ["High Payload Capacity", "GPS Stabilization", "Night Vision"] },
+        
+            ];
+
+            const productList = document.getElementById("product-list");
+
+            products.forEach((product, index) => {
+                const productHTML = `
+                    <div class="product-container ${index % 2 !== 0 ? 'reverse' : ''}">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="IG Products ${product.name}">
+                        </div>
+                        <div class="product-description">
+                            <h2>MirazeX Products ${product.name}</h2>
+                            <p>India’s leading Home, Hospital, Industry Automation Botz</p>
+                            <ul>
+                                ${product.features.map(feature => `<li>✔ ${feature}</li>`).join('')}
+                            </ul>
+                            <div class="product-specs">
+                                <p><strong>All-up-weight:</strong> ${product.weight}</p>
+                                <p><strong>Max Range:</strong> ${product.range}</p>
+                                <p><strong>Max Speed:</strong> ${product.speed}</p>
+                            </div>
+                            <div class="buttons">
+                                <button class="view-more" onclick="showAlert('${product.name}')">View More</button>
+                                <button class="download-brochure" onclick="downloadBrochure('${product.name}')">Download Brochure</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productList.innerHTML += productHTML;
+            });
+        });
+
+        function showAlert(productName) {
+            alert(`More details about ${productName} coming soon!`);
+        }
+
+        function downloadBrochure(productName) {
+            alert(`Downloading brochure for ${productName}...`);
+        }
+
+        function toggleMenu() {
+            const navLinks = document.querySelector(".nav-links");
+            navLinks.classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>

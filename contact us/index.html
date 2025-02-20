@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MirazeX</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">MirazeX</div>
+            <ul class="nav-links">
+                <li><a href="../home/index.html">Home</a></li>
+                <li><a href="../product/index.html">Products</a></li>
+                <li><a href="../service/index.html">Services</a></li>
+                <li><a href="../contact us/index.html" class="contact-btn">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        </nav>
+    </header>
+
+    <!-- Contact Us Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p>Say Something To Chat.</p>
+                <p><strong>📞</strong> +91 7008263839</p>
+                <p><strong>✉️</strong> sagar23swain@gmail.com</p>
+                <p><strong>📍</strong> Infocity Square, Bhubaneswar, Odisha, India</p>
+                <div class="social-icons">
+                    <a href="#">📷</a>
+                    <a href="#">📘</a>
+                    <a href="#">📌</a>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Contact Us</h2>
+                <p>Any question or remark? Kindly message us.</p>
+                <form id="contactForm">
+                    <div class="input-group">
+                        <input type="text" id="firstName" placeholder="First Name" required>
+                        <input type="text" id="lastName" placeholder="Last Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="email" placeholder="Email" required>
+                        <input type="tel" id="phone" placeholder="Phone Number">
+                    </div>
+                    <div class="purpose-group">
+                        <label>Purpose?</label>
+                        <div class="radio-buttons">
+                            <input type="radio" name="purpose" id="general1" value="General Inquiry" checked>
+                            <label for="general1">General Inquiry</label>
+                            <input type="radio" name="purpose" id="feedback" value="Feedback">
+                            <label for="feedback">Feedback</label>
+                            <input type="radio" name="purpose" id="support" value="Support">
+                            <label for="support">Support</label>
+                            <input type="radio" name="purpose" id="other" value="Other">
+                            <label for="other">Other</label>
+                        </div>
+                    </div>
+                    <textarea id="message" placeholder="Write your message..." required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Function to toggle menu for mobile view
+        function toggleMenu() {
+            const navLinks = document.querySelector(".nav-links");
+            navLinks.classList.toggle("active");
+        }
+
+        // Form validation and submission
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form from submitting normally
+
+            // Get form values
+            let firstName = document.getElementById("firstName").value.trim();
+            let lastName = document.getElementById("lastName").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let message = document.getElementById("message").value.trim();
+            let purpose = document.querySelector('input[name="purpose"]:checked').value;
+
+            // Validation
+            if (firstName === "" || lastName === "" || email === "" || message === "") {
+                alert("⚠️ Please fill in all required fields before submitting.");
+                return;
+            }
+
+            // Simulated email sending (In real case, send via backend)
+            let emailBody = `
+                Name: ${firstName} ${lastName}
+                Email: ${email}
+                Phone: ${phone}
+                Purpose: ${purpose}
+                Message: ${message}
+            `;
+
+            console.log("📩 Sending email...");
+            console.log(emailBody);
+
+            alert("✅ Your message has been sent successfully!");
+            document.getElementById("contactForm").reset(); // Reset form after submission
+        });
+    </script>
+
+</body>
+</html>
