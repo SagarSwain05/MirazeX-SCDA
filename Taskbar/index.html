@@ -211,6 +211,9 @@
             <button id="takePhoto" class="icon-btn" onclick="takePhoto()">
                 <i class="fas fa-camera"></i>
             </button>
+            <button id="flipCamera" class="icon-btn" onclick="flipCamera()">
+                <i class="fas fa-sync-alt"></i>
+            </button>
             <canvas id="snapshot" style="display:none;"></canvas>
             <img id="photoDisplay" style="display:none; margin-top: 10px; width: 100%; border: 1px solid #ccc; border-radius: 4px;"/>
 
@@ -235,32 +238,44 @@
     </div>
 
     <script>
+        let cameraStream;
+    let currentFacingMode = (window.innerWidth <= 768) ? 'environment' : undefined; // Rear camera for mobile, any for desktop
+
+    async function startCamera(facingMode) {
+        try {
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop()); // Stop previous stream
+            }
+
+            const constraints = {
+                video: facingMode ? { facingMode: facingMode } : true // Use default camera on desktops
+            };
+
+            cameraStream = await navigator.mediaDevices.getUserMedia(constraints);
+            document.getElementById('camera').srcObject = cameraStream;
+        } catch (error) {
+            console.error("Camera access error:", error);
+            alert("Camera access denied or not supported.");
+        }
+    }
+
+    function flipCamera() {
+        currentFacingMode = (currentFacingMode === 'user') ? 'environment' : 'user';
+        startCamera(currentFacingMode);
+    }
+
+    function takePhoto() {
         const camera = document.getElementById('camera');
         const snapshot = document.getElementById('snapshot');
-        const photoDisplay = document.getElementById('photoDisplay');
-        const deletePhotoBtn = document.getElementById('deletePhoto');
+        const context = snapshot.getContext('2d');
+        snapshot.width = camera.videoWidth;
+        snapshot.height = camera.videoHeight;
+        context.drawImage(camera, 0, 0, camera.videoWidth, camera.videoHeight);
+        document.getElementById('photoDisplay').src = snapshot.toDataURL('image/png');
+        document.getElementById('photoDisplay').style.display = 'block';
+    }
 
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function(stream) {
-                camera.srcObject = stream;
-            })
-            .catch(function(error) {
-                alert("Webcam access denied or not supported");
-            });
-
-        // Take a snapshot and display it in the image tag
-        function takePhoto() {
-            const context = snapshot.getContext('2d');
-            snapshot.width = camera.videoWidth;
-            snapshot.height = camera.videoHeight;
-            context.drawImage(camera, 0, 0, camera.videoWidth, camera.videoHeight);
-            const photoData = snapshot.toDataURL('image/png');
-            photoDisplay.src = photoData;
-            photoDisplay.style.display = 'block';
-            deletePhotoBtn.style.display = 'inline-block'; // Show delete button
-            alert('Photo taken and displayed');
-        }
-
+    startCamera(currentFacingMode);
         // Function to delete the photo
         function deletePhoto() {
             photoDisplay.src = ''; // Clear the image source
