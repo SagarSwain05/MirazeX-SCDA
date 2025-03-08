@@ -309,12 +309,12 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener("DOMContentLoaded", function () {
   const messagesContainer = document.querySelector(".messages");
   const users = [
-    { name: "Liam_James", img: "https://randomuser.me/api/portraits/men/3.jpg" },
-    { name: "Sophia_Grace", img: "https://randomuser.me/api/portraits/women/4.jpg" },
-    { name: "Noah_Smith", img: "https://randomuser.me/api/portraits/men/5.jpg" },
-    { name: "Ava_Lopez", img: "https://randomuser.me/api/portraits/women/6.jpg" },
-    { name: "Oliver_Brown", img: "https://randomuser.me/api/portraits/men/7.jpg" },
-    { name: "Isabella_Jones", img: "https://randomuser.me/api/portraits/women/8.jpg" },
+    { name: "Hari Das", img: "https://randomuser.me/api/portraits/men/3.jpg" },
+    { name: "Sania Sharma", img: "https://randomuser.me/api/portraits/women/4.jpg" },
+    { name: "Rudra Pratap", img: "https://randomuser.me/api/portraits/men/5.jpg" },
+    { name: "Shubh Shankar", img: "https://randomuser.me/api/portraits/women/6.jpg" },
+    { name: "Ommkar Mohanty", img: "https://randomuser.me/api/portraits/men/7.jpg" },
+    { name: "NIsha Rani Sahoo", img: "https://randomuser.me/api/portraits/women/8.jpg" },
   ];
   const messagesText = [
     "🔥 This website is so helpful!",
