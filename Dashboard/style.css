@@ -351,7 +351,7 @@ button, a {
   background-color: var(--link-color-hover);
   color: var(--link-color-active);
 }
-
+/* 
 .messages-section {
   flex-shrink: 0;
   padding-bottom: 32px;
@@ -463,7 +463,7 @@ button, a {
 .message-line.time {
   text-align: right;
   margin-bottom: 0;
-}
+} */
 
 .project-boxes {
   margin: 0 -8px;
@@ -1175,111 +1175,6 @@ body, .app-container {
 }
 
 
-
-
-/* 🔹 Ensure messages are centered and no horizontal scrolling */
-.messages-container {
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* Remove horizontal scroll */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* Align messages at the bottom */
-  align-items: center; /* Center messages horizontally */
-  position: relative;
-  padding: 10px;
-  background: white;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* 🔹 Message Box Style (Like Instagram Comments) */
-.message-box {
-  width: 90%;
-  max-width: 500px;
-  background: #fff;
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  animation: messagePopUp 0.5s ease-in-out;
-  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
-}
-
-/* 🔹 Message Content */
-.message-content {
-  flex: 1;
-}
-
-/* 🔹 User Profile Image */
-.message-box img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-/* 🔹 User Name & Time */
-.message-header {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  color: #555;
-  width: 100%;
-}
-
-/* 🔹 Reactions (Like Instagram) */
-.message-reactions {
-  display: flex;
-  gap: 8px;
-  margin-top: 5px;
-}
-
-.like-btn {
-  cursor: pointer;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: transform 0.2s ease-in-out;
-}
-
-.like-btn:hover {
-  transform: scale(1.2);
-}
-
-/* 🔹 Fixed Public Opinion Heading */
-.projects-section-header {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  background: white;
-  padding: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* 🔹 Message Pop-up Animation */
-@keyframes messagePopUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 🔹 Message Scroll-Up Animation */
-@keyframes messageScrollUp {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-60px);
-    opacity: 0;
-  }
-}
 
 
 /* 🔹 Progress Bar Container */
