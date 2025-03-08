@@ -5,6 +5,10 @@
   <title>MirazeX</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
 
 </head>
 <body>
@@ -381,177 +385,53 @@
       <line x1="9" y1="9" x2="15" y2="15" /></svg>
   </button>
   <!-- Messages Section -->
-  <div class="messages-section">
-    <button class="messages-close">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-           viewBox="0 0 24 24" fill="none" stroke="currentColor"
-           stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-           class="feather feather-x-circle">
-        <circle cx="12" cy="12" r="10" />
-        <line x1="15" y1="9" x2="9" y2="15" />
-        <line x1="9" y1="9" x2="15" y2="15" />
-      </svg>
-    </button>
-    <div class="projects-section-header">
+  <!-- Public Opinion Section -->
+<div class="messages-section">
+  <div class="projects-section-header">
       <p>Public Opinion</p>
-    </div>
+  </div>
 
-    <!-- We now have 5 different message-boxes. JS will cycle them. -->
-    <div class="messages">
-      <!-- Opinion 1 -->
-      <div class="message-box">
-        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80"
-             alt="profile image">
-        <div class="message-content">
-          <div class="message-header">
-            <div class="name">Simran</div>
-            <div class="star-checkbox">
-              <input type="checkbox" id="star-1">
-              <label for="star-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                     height="20" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-star">
-                  <polygon points="12 2 15.09 8.26 22 9.27
-                                   17 14.14 18.18 21.02
-                                   12 17.77 5.82 21.02
-                                   7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-              </label>
-            </div>
+  <div class="messages-container">
+      <div class="messages">
+          <!-- Example Message 1 -->
+          <div class="message-box">
+              <img src="https://randomuser.me/api/portraits/men/1.jpg">
+              <div class="message-content">
+                  <div class="message-header">
+                      <strong class="username">JohnDoe_99</strong> <span class="time">5 min ago</span>
+                  </div>
+                  <p>🔥 This website is so helpful!</p>
+                  <div class="message-reactions">
+                      <span class="like-btn">❤️ <span class="like-count">12</span></span>
+                      <span class="like-btn">👍 <span class="like-count">8</span></span>
+                      <span class="like-btn">🔥 <span class="like-count">5</span></span>
+                  </div>
+              </div>
           </div>
-          <p class="message-line">
-            Recently I saw that one of the street lights near Sailashree Vihar
-            square got damaged. Kindly fix it quickly.
-          </p>
-          <p class="message-line time">Aug, 31</p>
-        </div>
-      </div>
 
-      <!-- Opinion 2 -->
-      <div class="message-box">
-        <img src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40"
-             alt="profile image">
-        <div class="message-content">
-          <div class="message-header">
-            <div class="name">Ulash05</div>
-            <div class="star-checkbox">
-              <input type="checkbox" id="star-2">
-              <label for="star-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                     height="20" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-star">
-                  <polygon points="12 2 15.09 8.26 22 9.27
-                                   17 14.14 18.18 21.02
-                                   12 17.77 5.82 21.02
-                                   7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-              </label>
-            </div>
+          <!-- Example Message 2 -->
+          <div class="message-box">
+              <img src="https://randomuser.me/api/portraits/women/2.jpg">
+              <div class="message-content">
+                  <div class="message-header">
+                      <strong class="username">Emily_24</strong> <span class="time">10 min ago</span>
+                  </div>
+                  <p>Can you fix the street lights near my area?</p>
+                  <div class="message-reactions">
+                      <span class="like-btn">❤️ <span class="like-count">3</span></span>
+                      <span class="like-btn">👍 <span class="like-count">2</span></span>
+                      <span class="like-btn">🔥 <span class="like-count">1</span></span>
+                  </div>
+              </div>
           </div>
-          <p class="message-line">
-            Hey, I raised a problem for broken roads near my house.
-            Waiting for your response.
-          </p>
-          <p class="message-line time">Aug, 31</p>
-        </div>
-      </div>
 
-      <!-- Opinion 3 -->
-      <div class="message-box">
-        <img src="https://images.unsplash.com/photo-1543965170-4c01a586684e"
-             alt="profile image">
-        <div class="message-content">
-          <div class="message-header">
-            <div class="name">Soumya</div>
-            <div class="star-checkbox">
-              <input type="checkbox" id="star-3">
-              <label for="star-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                     height="20" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-star">
-                  <polygon points="12 2 15.09 8.26 22 9.27
-                                   17 14.14 18.18 21.02
-                                   12 17.77 5.82 21.02
-                                   7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-              </label>
-            </div>
-          </div>
-          <p class="message-line">
-            Awesome! 🤩 My uploaded problem was resolved quickly.
-          </p>
-          <p class="message-line time">Aug, 31</p>
-        </div>
-      </div>
-
-      <!-- Opinion 4 -->
-      <div class="message-box">
-        <img src="https://images.unsplash.com/photo-1533993192821-2cce3a8267d1"
-             alt="profile image">
-        <div class="message-content">
-          <div class="message-header">
-            <div class="name">Prito</div>
-            <div class="star-checkbox">
-              <input type="checkbox" id="star-4">
-              <label for="star-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                     height="20" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-star">
-                  <polygon points="12 2 15.09 8.26 22 9.27
-                                   17 14.14 18.18 21.02
-                                   12 17.77 5.82 21.02
-                                   7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-              </label>
-            </div>
-          </div>
-          <p class="message-line">
-            I’m really impressed. It’s easy to drop my problems here
-            and get them solved!
-          </p>
-          <p class="message-line time">Aug, 31</p>
-        </div>
-      </div>
-
-      <!-- Opinion 5 -->
-      <div class="message-box">
-        <img src="https://images.unsplash.com/photo-1583195764036-6dc248ac07d9"
-             alt="profile image">
-        <div class="message-content">
-          <div class="message-header">
-            <div class="name">Rohit</div>
-            <div class="star-checkbox">
-              <input type="checkbox" id="star-5">
-              <label for="star-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                     height="20" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round"
-                     class="feather feather-star">
-                  <polygon points="12 2 15.09 8.26 22 9.27
-                                   17 14.14 18.18 21.02
-                                   12 17.77 5.82 21.02
-                                   7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-              </label>
-            </div>
-          </div>
-          <p class="message-line">
-            The website is user-friendly. My complaint about
-            a fallen tree was addressed swiftly.
-          </p>
-          <p class="message-line time">Aug, 31</p>
-        </div>
+          <!-- More messages will be added dynamically via JavaScript -->
       </div>
   </div>
+</div>
+
+
+
 </div>
 </div>
 </div>
