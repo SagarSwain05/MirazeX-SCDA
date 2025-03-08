@@ -306,85 +306,85 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const messagesContainer = document.querySelector(".messages");
-  const users = [
-    { name: "Hari Das", img: "https://randomuser.me/api/portraits/men/3.jpg" },
-    { name: "Sania Sharma", img: "https://randomuser.me/api/portraits/women/4.jpg" },
-    { name: "Rudra Pratap", img: "https://randomuser.me/api/portraits/men/5.jpg" },
-    { name: "Shubh Shankar", img: "https://randomuser.me/api/portraits/women/6.jpg" },
-    { name: "Ommkar Mohanty", img: "https://randomuser.me/api/portraits/men/7.jpg" },
-    { name: "NIsha Rani Sahoo", img: "https://randomuser.me/api/portraits/women/8.jpg" },
-  ];
-  const messagesText = [
-    "🔥 This website is so helpful!",
-    "Great initiative! Keep up the good work! 👏",
-    "I reported a pothole, and it was fixed within a week! Amazing! 😍",
-    "Can someone address the garbage collection problem in my area?",
-    "I love how easy it is to report problems. Kudos to the team! 👏",
-    "My issue got resolved within days! Love this platform! ❤️",
-  ];
+// document.addEventListener("DOMContentLoaded", function () {
+//   const messagesContainer = document.querySelector(".messages");
+//   const users = [
+//     { name: "Liam_James", img: "https://randomuser.me/api/portraits/men/3.jpg" },
+//     { name: "Sophia_Grace", img: "https://randomuser.me/api/portraits/women/4.jpg" },
+//     { name: "Noah_Smith", img: "https://randomuser.me/api/portraits/men/5.jpg" },
+//     { name: "Ava_Lopez", img: "https://randomuser.me/api/portraits/women/6.jpg" },
+//     { name: "Oliver_Brown", img: "https://randomuser.me/api/portraits/men/7.jpg" },
+//     { name: "Isabella_Jones", img: "https://randomuser.me/api/portraits/women/8.jpg" },
+//   ];
+//   const messagesText = [
+//     "🔥 This website is so helpful!",
+//     "Great initiative! Keep up the good work! 👏",
+//     "I reported a pothole, and it was fixed within a week! Amazing! 😍",
+//     "Can someone address the garbage collection problem in my area?",
+//     "I love how easy it is to report problems. Kudos to the team! 👏",
+//     "My issue got resolved within days! Love this platform! ❤️",
+//   ];
 
-  function createMessage(user, text) {
-    let messageHTML = `
-      <div class="message-box">
-          <img src="${user.img}">
-          <div class="message-content">
-              <div class="message-header">
-                  <strong class="username">${user.name}</strong> <span class="time">${Math.floor(Math.random() * 60)} min ago</span>
-              </div>
-              <p>${text}</p>
-              <div class="message-reactions">
-                  <span class="like-btn">❤️ <span class="like-count">${Math.floor(Math.random() * 20)}</span></span>
-                  <span class="like-btn">👍 <span class="like-count">${Math.floor(Math.random() * 15)}</span></span>
-                  <span class="like-btn">🔥 <span class="like-count">${Math.floor(Math.random() * 10)}</span></span>
-              </div>
-          </div>
-      </div>`;
-    return messageHTML;
-  }
+//   function createMessage(user, text) {
+//     let messageHTML = `
+//       <div class="message-box">
+//           <img src="${user.img}">
+//           <div class="message-content">
+//               <div class="message-header">
+//                   <strong class="username">${user.name}</strong> <span class="time">${Math.floor(Math.random() * 60)} min ago</span>
+//               </div>
+//               <p>${text}</p>
+//               <div class="message-reactions">
+//                   <span class="like-btn">❤️ <span class="like-count">${Math.floor(Math.random() * 20)}</span></span>
+//                   <span class="like-btn">👍 <span class="like-count">${Math.floor(Math.random() * 15)}</span></span>
+//                   <span class="like-btn">🔥 <span class="like-count">${Math.floor(Math.random() * 10)}</span></span>
+//               </div>
+//           </div>
+//       </div>`;
+//     return messageHTML;
+//   }
 
-  function addNewMessage() {
-    // Select a random user and message
-    let user = users[Math.floor(Math.random() * users.length)];
-    let messageText = messagesText[Math.floor(Math.random() * messagesText.length)];
+//   function addNewMessage() {
+//     // Select a random user and message
+//     let user = users[Math.floor(Math.random() * users.length)];
+//     let messageText = messagesText[Math.floor(Math.random() * messagesText.length)];
 
-    // Create the message and add it to the container
-    let newMessage = document.createElement("div");
-    newMessage.innerHTML = createMessage(user, messageText);
-    newMessage = newMessage.firstElementChild;
-    messagesContainer.appendChild(newMessage);
+//     // Create the message and add it to the container
+//     let newMessage = document.createElement("div");
+//     newMessage.innerHTML = createMessage(user, messageText);
+//     newMessage = newMessage.firstElementChild;
+//     messagesContainer.appendChild(newMessage);
 
-    // If messages exceed 6, remove the oldest with an animation
-    if (messagesContainer.children.length > 6) {
-      let firstMessage = messagesContainer.children[0];
-      firstMessage.style.animation = "messageScrollUp 0.5s ease-in-out forwards";
-      setTimeout(() => firstMessage.remove(), 500);
-    }
+//     // If messages exceed 6, remove the oldest with an animation
+//     if (messagesContainer.children.length > 6) {
+//       let firstMessage = messagesContainer.children[0];
+//       firstMessage.style.animation = "messageScrollUp 0.5s ease-in-out forwards";
+//       setTimeout(() => firstMessage.remove(), 500);
+//     }
 
-    // Scroll to the bottom smoothly
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
+//     // Scroll to the bottom smoothly
+//     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+//   }
 
-  // Generate 15-20 random messages on page load
-  for (let i = 0; i < 15; i++) {
-    let user = users[Math.floor(Math.random() * users.length)];
-    let messageText = messagesText[Math.floor(Math.random() * messagesText.length)];
-    messagesContainer.innerHTML += createMessage(user, messageText);
-  }
+//   // Generate 15-20 random messages on page load
+//   for (let i = 0; i < 15; i++) {
+//     let user = users[Math.floor(Math.random() * users.length)];
+//     let messageText = messagesText[Math.floor(Math.random() * messagesText.length)];
+//     messagesContainer.innerHTML += createMessage(user, messageText);
+//   }
 
-  // Add a new message every 5 seconds
-  setInterval(addNewMessage, 5000);
+//   // Add a new message every 5 seconds
+//   setInterval(addNewMessage, 5000);
 
-  // Like Button Click Effect
-  document.addEventListener("click", function (event) {
-    if (event.target.closest(".like-btn")) {
-      let countSpan = event.target.querySelector(".like-count");
-      let currentCount = parseInt(countSpan.innerText);
-      countSpan.innerText = currentCount + 1; // Increase like count
-    }
-  });
-});
+//   // Like Button Click Effect
+//   document.addEventListener("click", function (event) {
+//     if (event.target.closest(".like-btn")) {
+//       let countSpan = event.target.querySelector(".like-count");
+//       let currentCount = parseInt(countSpan.innerText);
+//       countSpan.innerText = currentCount + 1; // Increase like count
+//     }
+//   });
+// });
 
 
 
@@ -424,5 +424,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Start the animation loop
   animateProgressBars();
 });
+
+
 
 
