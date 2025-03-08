@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop-Up Form with Camera & Location</title>
+    <title>MirazeX || Problem Updation Section </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <style>
         /* Page styling */
         body {
@@ -16,6 +18,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         }
 
         /* Background image section */
@@ -42,6 +45,7 @@
             max-height: 90vh;
             overflow-y: auto;
             width: 400px;
+            
         }
 
         /* Heading styling */
@@ -61,32 +65,54 @@
 
         /* Input fields styling */
         input[type="file"], input[type="text"], textarea, select {
-            display: block;
-            width: 100%;
+            display:block;
+            width: 94%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 10px;
         }
 
         textarea {
             height: 100px;
         }
 
-        /* Submit button styling */
         .submit-btn {
-            background-color: #4151ac;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient Effect */
             color: white;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 25px; /* Rounded Edges */
             cursor: pointer;
-            align-self: center;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft Shadow */
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
         }
-
+        
         .submit-btn:hover {
-            background-color: #45a049;
+            background: linear-gradient(135deg, #feb47b, #ff7e5f); /* Hover Effect */
+            transform: scale(1.05); /* Slight Zoom on Hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
+        
+        .submit-btn:active {
+            transform: scale(0.98); /* Button Press Effect */
+            box-shadow: 0 2px 8px rgba(30, 222, 43, 0.2);
+        }
+        
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
 
         /* Icons for camera and location */
         .icon-btn {
@@ -95,13 +121,15 @@
             width: 50px;
             height: 50px;
             cursor: pointer;
-            margin-top: 0px;
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            background-color: rgb(255, 255, 255);
+            background-color: white;
             position: relative;
+            margin: 0 10px; /* Adds small spacing between buttons */
+            
         }
+        
 
         /* Camera styling */
         #camera {
@@ -110,6 +138,7 @@
             max-height: 200px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            margin-top: 10px;
             margin-bottom: 10px;
         }
 
@@ -189,55 +218,76 @@
         <div class="chatbot-box">
             <!-- Problem type selection -->
             <label for="problemType">Select Problem Type:</label>
-            <select id="problemType">
-                <option value="">--Select an option--</option>
-                <option value="broken_street_light">Broken Street Light</option>
-                <option value="damaged_road">Damaged Road</option>
-                <option value="open_manhole">Open Manhole</option>
-                <option value="other">Other Problems</option>
-            </select>
+<select id="problemType" required>
+    <option value="">--Select an option--</option>
+    <option value="broken_street_light">Broken Street Light</option>
+    <option value="damaged_road">Damaged Road</option>
+    <option value="open_manhole">Open Manhole</option>
+    <option value="other">Other Problems</option>
+</select>
 
-            <!-- Serial number input -->
-            <input type="text" id="serialNumber" placeholder="Enter serial number of the damaged product">
+<!-- Serial number input -->
+<input type="text" id="serialNumber" placeholder="Enter serial number of the damaged product" required>
 
-            <!-- Location input -->
-            <input type="text" id="location" placeholder="Enter your location" onblur="checkLocation()">
-            <button class="icon-btn" onclick="getLocation()">
-                <i class="fas fa-map-marker-alt"></i>
-            </button>
+<!-- Location input -->
+<input type="text" id="location" placeholder="Enter your Location" required>
+<input type="text" id="locality" placeholder="Enter your Locality" required onblur="checkLocation()">
+<button class="icon-btn" onclick="getLocation()">
+    <i class="fas fa-map-marker-alt"></i>
+</button>
 
-            <!-- Camera element -->
-            <video id="camera" autoplay></video>
-            <button id="takePhoto" class="icon-btn" onclick="takePhoto()">
-                <i class="fas fa-camera"></i>
-            </button>
-            <button id="flipCamera" class="icon-btn" onclick="flipCamera()">
-                <i class="fas fa-sync-alt"></i>
-            </button>
-            <canvas id="snapshot" style="display:none;"></canvas>
-            <img id="photoDisplay" style="display:none; margin-top: 10px; width: 100%; border: 1px solid #ccc; border-radius: 4px;"/>
+<!-- Camera element -->
+<video id="camera" autoplay></video>
+<button id="takePhoto" class="icon-btn" onclick="takePhoto()">
+    <i class="fas fa-camera"></i>
+</button>
+<button id="flipCamera" class="icon-btn" onclick="flipCamera()">
+    <i class="fas fa-sync-alt"></i>
+</button>
+<canvas id="snapshot" style="display:none;"></canvas>
+<img id="photoDisplay" style="display:none; margin-top: 10px; width: 100%; border: 1px solid #ccc; border-radius: 4px;"/>
 
-            <input type="file" id="fileUpload" accept="image/*">
-            <textarea id="problemDetails" placeholder="Describe your problem..."></textarea>
+<!-- ✅ Move the delete button below the image -->
+<button id="deletePhoto" class="delete-btn" onclick="deletePhoto()" style="display: none; margin-top: 10px;">Delete Photo</button>
 
-            <div class="checkbox-container">
-                <input type="checkbox" id="agreeTerms">
-                <label for="agreeTerms">I agree to the terms and conditions</label>
-            </div>
+<input type="file" id="fileUpload" accept="image/*" required>
+<textarea id="problemDetails" placeholder="Describe your problem..." required></textarea>
 
-            <!-- Delete photo button -->
-            <button id="deletePhoto" class="delete-btn" onclick="deletePhoto()">Delete Photo</button>
-        </div>
-        <button class="submit-btn" onclick="submitForm(event)">Submit</button>
+<input type="email" id="email" placeholder="Enter your email" required>
+
+<div class="checkbox-container">
+    <input type="checkbox" id="agreeTerms" required>
+    <label for="agreeTerms">I agree to the terms and conditions</label>
+</div>
+
+    
+<button type="submit" class="submit-btn" onclick="validateAndSendEmail(event)">Submit</button>
 
         <div id="rewardPopup" class="reward-popup">
             <h2>Congratulations!</h2>
-            <p>You've received a <strong>10% discount coupon</strong> for helping improve the city.</p>
+            <p>You've received a <strong>10% discount coupon of Swiggy</strong> for helping improve the city.</p>
             <button onclick="closePopup()">OK</button>
         </div>
     </div>
 
     <script>
+
+
+        // ✅ Initialize EmailJS
+        window.onload = function () {
+            emailjs.init("icrEc9AAttosc3THh");  // Use your EmailJS public key
+        };
+
+        // ✅ Validate and Send Email
+        function validateAndSendEmail(event) {
+            event.preventDefault();
+
+            if (validateForm()) {
+                sendEmail();
+            }
+        }
+
+
         let cameraStream;
     let currentFacingMode = (window.innerWidth <= 768) ? 'environment' : undefined; // Rear camera for mobile, any for desktop
 
@@ -268,21 +318,63 @@
         const camera = document.getElementById('camera');
         const snapshot = document.getElementById('snapshot');
         const context = snapshot.getContext('2d');
+        const photoDisplay = document.getElementById('photoDisplay');
+        const deletePhotoBtn = document.getElementById('deletePhoto');
+    
+        // Capture image from video stream
         snapshot.width = camera.videoWidth;
         snapshot.height = camera.videoHeight;
         context.drawImage(camera, 0, 0, camera.videoWidth, camera.videoHeight);
-        document.getElementById('photoDisplay').src = snapshot.toDataURL('image/png');
-        document.getElementById('photoDisplay').style.display = 'block';
+    
+        // Set captured image to display
+        photoDisplay.src = snapshot.toDataURL('image/png');
+        photoDisplay.style.display = 'block';
+    
+        // ✅ Make the "Delete Photo" button visible
+        deletePhotoBtn.style.display = 'block';
     }
+    
+
+
+    function deletePhoto() {
+        const photoDisplay = document.getElementById('photoDisplay');
+        const deletePhotoBtn = document.getElementById('deletePhoto');
+    
+        if (photoDisplay) {
+            photoDisplay.src = ''; // Clear the image source
+            photoDisplay.style.display = 'none'; // Hide the image
+        }
+    
+        if (deletePhotoBtn) {
+            deletePhotoBtn.style.display = 'none'; // Hide the delete button again
+        }
+    
+        alert('Photo deleted. You can take a new photo.');
+    }
+    
+    
+
+
+
 
     startCamera(currentFacingMode);
         // Function to delete the photo
         function deletePhoto() {
-            photoDisplay.src = ''; // Clear the image source
-            photoDisplay.style.display = 'none'; // Hide the image
-            deletePhotoBtn.style.display = 'none'; // Hide delete button
+            let photoDisplay = document.getElementById('photoDisplay');
+            let deletePhotoBtn = document.getElementById('deletePhoto');
+        
+            if (photoDisplay) {
+                photoDisplay.src = ''; // Clear the image source
+                photoDisplay.style.display = 'none'; // Hide the image
+            }
+        
+            if (deletePhotoBtn) {
+                deletePhotoBtn.style.display = 'none'; // Hide the delete button
+            }
+        
             alert('Photo deleted. You can take a new photo.');
         }
+        
 
         // Geolocation access
         function getLocation() {
@@ -320,60 +412,106 @@
                 getLocation();
             }
         }
-        
-        function submitForm() {
-            const agreedToTerms = document.getElementById('agreeTerms').checked;
-            if (!agreedToTerms) {
-                alert("You need to agree to the terms and conditions before submitting.");
-                return;
-            }
 
-            const locationInput = document.getElementById('location').value;
-            const problemDetails = document.getElementById('problemDetails').value;
-            const photoData = document.getElementById('photoDisplay').src;
-            const serialNumber = document.getElementById('serialNumber').value;
+
+        function validateAndSendEmail(event) {
+            event.preventDefault(); // Prevent form from submitting automatically
+        
+            if (validateForm()) { 
+                sendEmail(); // Call sendEmail() only if validation is successful
+            }
+        }
+        
+        function validateForm() {
             const problemType = document.getElementById('problemType').value;
+            const serialNumber = document.getElementById('serialNumber').value.trim();
+            const location = document.getElementById('location').value.trim();
+            const locality = document.getElementById('locality').value.trim();
+            const problemDetails = document.getElementById('problemDetails').value.trim();
+            const email = document.getElementById('email').value.trim();
 
-            if (!locationInput) {
-                getLocation();
-                alert("Please provide your location.");
-                return;
+            if (!problemType || !serialNumber || !location || !locality || !problemDetails || !email) {
+                alert("⚠️ Please fill out all fields before submitting.");
+                return false;
             }
-
-            if (!photoData || photoData === "") {
-                alert("Please take a photo before submitting.");
-                return;
-            }
-
-            if (!problemDetails) {
-                alert("Please describe your problem.");
-                return;
-            }
-
-            if (!serialNumber) {
-                alert("Please enter the serial number of the damaged product.");
-                return;
-            }
-
-            if (!problemType) {
-                alert("Please select a problem type.");
-                return;
-            }
-
-            alert("Your problem will be resolved as soon as possible.");
-            window.location.href = "../Dashboard/index.html";
-        }
-
-function submitForm() {
-    document.getElementById('rewardPopup').style.display = 'block';
-}
-
-function closePopup() {
-    document.getElementById('rewardPopup').style.display = 'none';
-    alert("Your problem will be resolved as soon as possible.");
-    window.location.href = "../Dashboard/index.html";
-}
         
+            // ✅ Show the reward popup
+            document.getElementById('rewardPopup').style.display = 'block';
+        
+            // ✅ Redirect after 3 seconds (give time for the user to see the reward popup)
+            setTimeout(() => {
+                window.location.href = "../Dashboard/index.html";
+            }, 3000); // 3-second delay before redirecting
+            return true;
+        }
+        
+
+        function closePopup() {
+            document.getElementById('rewardPopup').style.display = 'none';
+            alert("Your problem will be resolved as soon as possible.");
+            // ✅ Redirect only after user closes the popup
+            setTimeout(() => {
+                window.location.href = "../Dashboard/index.html";
+            }, 500); // Small delay before redirect
+        }
+        
+
+        reader.onload = function (event) {
+            emailData.image_url = event.target.result; // Base64 image
+        
+            // ✅ Debugging: Check if Base64 is generated
+            console.log("✅ Base64 Image Generated:", emailData.image_url);
+        
+            sendEmailRequest(emailData); // Send email after encoding image
+        };
+        
+
+
+
+
+
+      // ✅ Send Email Using EmailJS with Image as Base64
+function sendEmail() {
+    const fileInput = document.getElementById("fileUpload");
+    const file = fileInput.files[0];
+
+    const emailData = {
+        problem_type: document.getElementById('problemType').value,
+        serial_number: document.getElementById('serialNumber').value.trim(),
+        location: document.getElementById('location').value.trim(),
+        locality: document.getElementById('locality').value.trim(),
+        problem_details: document.getElementById('problemDetails').value.trim(),
+        reply_to: document.getElementById('email').value.trim(),
+        image_url: "" // Placeholder for image
+    };
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            emailData.image_url = event.target.result; // Base64 image
+            sendEmailRequest(emailData); // Send email after encoding image
+        };
+        reader.readAsDataURL(file);
+    } else {
+        sendEmailRequest(emailData); // Send email without image
+    }
+}
+
+// ✅ Function to Send Email Using EmailJS
+function sendEmailRequest(emailData) {
+    console.log("🚀 Sending email with data:", emailData);
+
+    emailjs.send("service_n3l4hga", "template_mlecq49", emailData, "icrEc9AAttosc3THh")
+        .then(function(response) {
+            alert("✅ Form submitted successfully! Check your email.");
+            console.log("✅ Email sent:", response);
+        })
+        .catch(function(error) {
+            alert("❌ Error sending email. Please check the console.");
+            console.error("❌ EmailJS Error:", error);
+        });
+}
+
 
        
     </script>
